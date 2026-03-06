@@ -9,14 +9,14 @@ Este projeto é um painel de métricas de testes automatizados de QA, desenvolvi
 - **Pandas**: Manipulação de dados
 - **Plotly**: Gráficos interativos
 - **SQLite**: Banco de dados local (via `sqlite3`)
-- **fpdf**: Geração de relatórios em PDF
+- **reportlab**: Geração de relatórios em PDF
 
 ## Instalação
 
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/qa-dashboard.git
+git clone https://github.com/recueroana/qa-dashboard.git
 cd qa-dashboard
 ```
 
@@ -35,6 +35,8 @@ source venv/bin/activate
 
 ```bash
 pip install -r requirements.txt
+
+pip install matplotlib
 ```
 
 ## Como Usar
@@ -61,7 +63,7 @@ O banco de dados será criado automaticamente na primeira execução, não é ne
 5. **Visualização e análise:**
 
 - Filtre por squads, visualize KPIs, gráficos e o score de saúde.
-- Gere relatórios em PDF clicando no botão correspondente.
+- Gere relatórios em PDF clicando no botão "Gerar relatório PDF" na barra lateral; o arquivo gerado virá com carimbo de data/hora no nome e estará disponível para download.
 
 ## Estrutura do Projeto
 
@@ -78,7 +80,7 @@ qa-dashboard/
 - streamlit
 - pandas
 - plotly
-- fpdf
+- reportlab
 
 Todas as dependências estão listadas em `requirements.txt`.
 

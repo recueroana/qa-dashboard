@@ -8,7 +8,17 @@ import os
 
 def gerar_pdf(resumo, kpis):
 
-    file_path = "relatorio_qa_dashboard.pdf"
+    # clean up any previous reports matching our naming pattern
+    import glob
+    for old in glob.glob("relatorio_qa_dashboard_*.pdf"):
+        try:
+            os.remove(old)
+        except Exception:
+            pass
+
+    # generate a unique filename with timestamp to avoid overwriting
+    from datetime import datetime
+    file_path = f"relatorio_qa_dashboard_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
 
     doc = SimpleDocTemplate(file_path, pagesize=A4)
     styles = getSampleStyleSheet()
@@ -20,8 +30,8 @@ def gerar_pdf(resumo, kpis):
     tabela_kpi = Table([
         ["Squads", kpis["total_squads"]],
         ["Produtos", kpis["total_produtos"]],
-        ["Cobertura Média", f'{kpis["cobertura"]:.1f}%'],
-        ["Automation Gap", kpis["gap_total"]],
+        ["Cobertura Média", f'{kpis["cobertura"]:.2f}%'],
+        ["Automation Gap", f'{kpis["gap_total"]:.2f}%'],
     ])
 
     tabela_kpi.setStyle([
